@@ -19,3 +19,6 @@ The following files are generated in `outputs/`:
 - `summary.md`: Human-readable summary.
 - `column_profile.csv`: Column-level profile statistics.
 - `numeric_describe.csv`: Descriptive stats for numeric columns.
+- `benford/benford_summary.csv`: Benford summary statistics per numeric column.
+- `benford/benford_detail.csv`: Benford detail distribution per digit.
+- `benford/benford_overall.png`: Overall Benford distribution chart.
