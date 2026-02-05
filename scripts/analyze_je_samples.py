@@ -87,7 +87,7 @@ def write_outputs(df: pd.DataFrame, output_dir: Path) -> None:
         .head(10)
         .loc[:, ["column", "missing", "missing_pct"]]
     )
-    summary_md.append(missing_sorted.to_markdown(index=False))
+    summary_md.append(render_markdown_table(missing_sorted))
 
     (output_dir / "summary.md").write_text("\n".join(summary_md))
 
@@ -102,6 +102,17 @@ def main() -> None:
 
     df = pd.read_excel(input_path)
     write_outputs(df, output_dir)
+
+
+def render_markdown_table(df: pd.DataFrame) -> str:
+    headers = [str(column) for column in df.columns]
+    rows = df.astype(str).values.tolist()
+
+    header_line = "| " + " | ".join(headers) + " |"
+    separator_line = "| " + " | ".join(["---"] * len(headers)) + " |"
+    row_lines = ["| " + " | ".join(row) + " |" for row in rows]
+
+    return "\n".join([header_line, separator_line] + row_lines)
 
 
 if __name__ == "__main__":
