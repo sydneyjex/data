@@ -32,3 +32,9 @@ jobs:
         with:
           name: je-samples-outputs
           path: outputs
+
+      - name: Upload Benford charts
+        uses: actions/upload-artifact@v4
+        with:
+          name: benford-analysis
+          path: outputs/benford
